@@ -5,6 +5,7 @@ import image1 from "../images/אקליפס תמונות מאשאפ 3.png"
 import image2 from "../images/אקליפס תמונות מאשאפ 2.png"
 import image3 from "../images/אקליפס תמונות מאשאפ 5.png"
 import image4 from "../images/אקליפס תמונות מאשאפ 6.png"
+import SimpleVideoGallery from '../components/parralex/Parralex';
 // GSAP imports would be here in real project
 // import { gsap } from 'gsap';
 // import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -184,6 +185,20 @@ const ForthScreen = () => {
           </div>
         </section>
       ))}
+
+      {/* Video Gallery Section */}
+     
+         <div className={styles.header}>
+          <ScrollFloat
+          containerClassName={styles.headerTitle}
+          animationDuration={1.2}
+          stagger={0.05}
+        >
+        And It Goes Like This..
+        </ScrollFloat>
+        <SimpleVideoGallery/>
+      </div>
+   
 
       {/* CTA Section */}
       <div className={styles.ctaSection}>

@@ -1,0 +1,131 @@
+/* SimpleVideoGallery.module.css */
+
+.container {
+  background: #fcfaf8;
+  padding: 2rem 1rem;
+  font-family: 'Assistant', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heroTitle {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  letter-spacing: 0;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.videosContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.videoWrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Responsive Design */
+
+/* מסכים קטנים מאוד - עד 480px */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+  
+  .videosContainer {
+    gap: 1.5rem;
+  }
+  
+  .videoWrapper {
+    width: 250px;
+    height: 400px;
+  }
+}
+
+/* מסכים קטנים - 481px עד 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  
+  .videosContainer {
+    gap: 2rem;
+  }
+  
+  .videoWrapper {
+    width: 280px;
+    height: 450px;
+  }
+}
+
+/* טאבלטים - 769px עד 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .videosContainer {
+    gap: 1.5rem;
+  }
+  
+  .videoWrapper {
+    width: 280px;
+    height: 460px;
+  }
+}
+
+/* מסכים גדולים יותר - מעל 1024px */
+@media (min-width: 1025px) {
+  .videosContainer {
+    gap: 2.5rem;
+  }
+  
+  .videoWrapper {
+    width: 320px;
+    height: 520px;
+  }
+}

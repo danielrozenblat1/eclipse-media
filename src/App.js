@@ -9,12 +9,14 @@ import ForthScreen from './screens/ForthScreen';
 import LightRays from './screens/FifthScreen';
 import SixthScreen from './screens/SixthScreen';
 import ByMe from './components/ByMe/ByMe';
+import SimpleVideoGallery from './components/parralex/Parralex';
 
 function App() {
 
   return <>
   <HeroSection/>
 
+<ThirdScreen/>
    <ForthScreen/>
   {/* <ThirdScreen/> */}
 

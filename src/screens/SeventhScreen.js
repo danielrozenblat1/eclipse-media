@@ -8,7 +8,7 @@ const SeventhScreen = () => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>As Seen In</div>
-          <div className={styles.description}>click on the image to read more</div>
+    
       <div className={styles.imageContainer}>
         <a 
           href="https://www.geektime.co.il/how-to-take-the-perfect-linkedin-picture/" 
@@ -24,8 +24,9 @@ const SeventhScreen = () => {
             />
           </div>
         </a>
+        
       </div>
-
+      <div className={styles.description}>click on the image to read more</div>
       <div className={styles.title}>Some Of Our Previous Projects</div>
       <Faces/>
       
