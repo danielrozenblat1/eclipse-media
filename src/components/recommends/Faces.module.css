@@ -1,0 +1,130 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px; /* מרווח בין הקרוסלות */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-family: "Alata";
+  text-align: center;
+  margin: 1% auto;
+  direction: rtl;
+  width: 100%;
+  font-weight: 800;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.explain {
+  font-size: 25px;
+  direction: rtl;
+  width: 65%;
+  text-align: center;
+  margin: 2% auto;
+  font-family: "AssistantR";
+}
+
+/* קרוסלה ראשונה - תנועה שמאלה */
+.scrollTrack {
+  display: flex;
+  width: fit-content;
+  animation: scroll 45s linear infinite; /* האטה מ-30s ל-45s */
+  gap: 40px;
+}
+
+/* קרוסלה שנייה - תנועה ימינה */
+.scrollTrackReverse {
+  display: flex;
+  width: fit-content;
+  animation: scrollReverse 45s linear infinite; /* האטה מ-30s ל-45s */
+  gap: 40px;
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 40px;
+  padding: 20px 0;
+  align-items: center;
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+  width: 300px; /* רוחב קבוע של 300px במסכי מחשב */
+  height: auto;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* אנימציה לקרוסלה הראשונה - תנועה שמאלה */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* אנימציה לקרוסלה השנייה - תנועה ימינה */
+@keyframes scrollReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 450px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .explain {
+    font-size: 18px;
+    width: 90%;
+  }
+
+  .imageWrapper {
+    width: 200px; /* רוחב מותאם למובייל */
+  }
+  
+  .scrollContainer {
+    gap: 25px; /* רווח מקוצר בגלל תמונות גדולות יותר */
+  }
+  
+  .scrollTrack, .scrollTrackReverse {
+    gap: 25px;
+  }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 1050px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .explain {
+    font-size: 20px;
+    width: 80%;
+  }
+
+  .imageWrapper {
+    width: 250px; /* רוחב מותאם לטאבלט */
+  }
+  
+  .scrollContainer {
+    gap: 30px; /* רווח מותאם לטאבלט */
+  }
+  
+  .scrollTrack, .scrollTrackReverse {
+    gap: 30px;
+  }
+}

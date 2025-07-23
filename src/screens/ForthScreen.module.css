@@ -1,0 +1,715 @@
+.container {
+  position: relative;
+  background: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  z-index: 10;
+}
+/* 
+.parallaxBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(24, 191, 197, 0.03) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(24, 191, 197, 0.05) 0%, transparent 60%);
+  z-index: -1;
+  will-change: transform;
+} */
+
+.header {
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  font-family: 'Alata';
+  font-weight: 800;
+  z-index: 2;
+}
+
+.headerTitle {
+  margin-bottom: 30px;
+  font-family: 'Alata';
+  font-weight: 600;
+}
+
+.headerDescription {
+  font-size: 1.1rem;
+  color: #666666;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'HeeboR';
+  line-height: 1.5;
+  font-weight: 300;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ScrollFloat Styles */
+.scrollFloat {
+  overflow: hidden;
+}
+
+.scrollFloatText {
+  display: inline-block;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.2;
+  color: #000000;
+  letter-spacing: -2px;
+  font-family: 'Alata';
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(120%) scaleY(2.3) scaleX(0.7);
+  transform-origin: 50% 0%;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.charVisible {
+  opacity: 1;
+  transform: translateY(0%) scaleY(1) scaleX(1);
+}
+
+.step {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
+  padding: 0 5%;
+}
+
+/* קו curved מעוצב בין השלבים */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  opacity: 0;
+  animation: fadeInCurvedLine 1.5s ease 1s forwards;
+}
+
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 2px;
+  background: none;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(24, 191, 197, 0.3) 25%, 
+    rgba(24, 191, 197, 0.7) 50%, 
+    rgba(24, 191, 197, 0.3) 75%, 
+    transparent 100%
+  ) 1;
+  border-radius: 100px;
+  box-shadow: 
+    0 0 8px rgba(24, 191, 197, 0.2),
+    0 2px 4px rgba(24, 191, 197, 0.1);
+  clip-path: ellipse(90px 15px at center);
+  opacity: 0;
+  animation: fadeInCurvedLine 1.5s ease 1.2s forwards;
+}
+
+/* אנימציה לקו curved */
+@keyframes fadeInCurvedLine {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0) translateY(10px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scaleX(0.8) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1) translateY(0);
+  }
+}
+
+.stepContent {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 500px;
+  position: relative;
+}
+
+/* Left text layout */
+.leftText .stepContent {
+  flex-direction: row;
+}
+
+.leftText .textSection {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.leftText .imageSection {
+  flex: 1;
+}
+
+/* Right text layout */
+.rightText .stepContent {
+  flex-direction: row-reverse;
+}
+
+.rightText .textSection {
+  flex: 1;
+  padding-left: 40px;
+  text-align: right;
+}
+
+.rightText .imageSection {
+  flex: 1;
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* עיצוב עדין לספרה */
+.stepNumber {
+  font-size: 6rem;
+  font-weight: 300;
+  color: #18BFC5;
+  margin-bottom: 30px;
+  letter-spacing: 0px;
+  font-family: 'Alata';
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 0.8;
+}
+
+.visible .stepNumber {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+.stepTitleContainer {
+  margin-bottom: 25px;
+}
+
+.stepTitleContainer .scrollFloatText {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 400;
+  text-align: left;
+  color: #000000;
+  letter-spacing: -1px;
+  font-family: 'Alata';
+}
+
+.rightText .stepTitleContainer .scrollFloatText {
+  text-align: right;
+}
+
+.stepDescription {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #666666;
+  font-weight: 300;
+  max-width: 450px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  font-family: 'HeeboR';
+}
+
+.rightText .stepDescription {
+  margin-left: auto;
+}
+
+.visible .stepDescription {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.imageSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 4/3;
+  border-radius: 24px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
+}
+
+.visible .imageWrapper {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stepImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(0.1) contrast(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(24, 191, 197, 0.03) 0%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    135deg,
+    rgba(24, 191, 197, 0.02) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  margin-top: 80px;
+}
+
+.ctaTitle {
+  margin-bottom: 30px;
+  font-family: 'Alata';
+  font-weight: 600;
+}
+
+.ctaTitle .scrollFloatText {
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  color: #000000;
+  font-weight: 600;
+}
+
+.ctaDescription {
+  font-size: 1.2rem;
+  color: #666666;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  font-family: 'HeeboR';
+  line-height: 1.6;
+  font-weight: 300;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+.ctaButton {
+  background: transparent;
+  color: #000000;
+  border: 2px solid #18BFC5;
+  padding: 18px 40px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: 'HeeboR';
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.8s forwards;
+}
+
+.ctaButton:hover {
+  background: rgba(24, 191, 197, 0.1);
+  border-color: #16a8ad;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(24, 191, 197, 0.2);
+}
+
+.ctaButton:active {
+  transform: translateY(-1px);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* קונטיינר הטופס - אפקט זכוכית */
+.formContainer {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  animation: slideUp 0.4s ease-out;
+  direction: ltr;
+  z-index: 100000;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* כפתור סגירה */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* כותרות הטופס */
+.formTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-family: "HeeboR", "Heebo", sans-serif;
+}
+
+.formSubtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  direction: ltr;
+}
+
+/* הטופס */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  text-align: left;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+  backdrop-filter: blur(10px);
+  direction: ltr;
+  text-align: left;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input:focus {
+  border-color: #18BFC5;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(24, 191, 197, 0.2);
+}
+
+/* כפתור שליחה */
+.submitButton {
+  background: linear-gradient(135deg, #18BFC5, #16a8ad);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, #16a8ad, #148a8f);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(24, 191, 197, 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Scroll reveal animations */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stepContent {
+    gap: 70px;
+    padding: 0 20px;
+    min-height: 450px;
+  }
+  
+  .stepTitleContainer .scrollFloatText {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+  
+  .step {
+    margin-bottom: 60px;
+  }
+  
+  .stepNumber {
+    font-size: 4.5rem;
+    opacity: 0.7;
+  }
+
+  .ctaSection {
+    padding: 80px 20px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .step {
+    margin-bottom: 50px;
+  }
+  
+  .stepContent {
+    flex-direction: column !important;
+    gap: 40px;
+    text-align: center;
+    min-height: auto;
+  }
+  
+  .rightText .stepContent {
+    flex-direction: column !important;
+  }
+  
+  .textSection {
+    padding: 0 !important;
+    text-align: center !important;
+  }
+  
+  .stepDescription {
+    margin: 0 auto !important;
+  }
+  
+  .stepNumber {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+  
+  .stepNumber::after {
+    left: 50% !important;
+    right: auto !important;
+  }
+  
+  .stepTitleContainer .scrollFloatText {
+    text-align: center !important;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .header {
+    padding: 80px 20px 50px;
+  }
+  
+  .scrollFloatText {
+    font-size: clamp(1.8rem, 8vw, 3rem) !important;
+  }
+  
+  /* קו מותאם למובייל */
+  .step:not(:last-child)::before {
+    width: 120px;
+    bottom: -30px;
+  }
+  
+  .step:not(:last-child)::after {
+    bottom: -35px;
+  }
+
+  .ctaSection {
+    padding: 60px 20px 50px;
+  }
+
+  .ctaButton {
+    font-size: 1rem;
+    padding: 16px 35px;
+  }
+
+  .formContainer {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .formTitle {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stepTitleContainer .scrollFloatText {
+    font-size: clamp(1.3rem, 6vw, 1.8rem) !important;
+  }
+  
+  .stepDescription {
+    font-size: 0.95rem;
+  }
+  
+  .stepContent {
+    gap: 30px;
+  }
+  
+  .step {
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+  
+  .scrollFloatText {
+    font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
+  }
+  
+  .stepNumber {
+    font-size: 2.8rem;
+    opacity: 0.7;
+  }
+  
+  .step:not(:last-child)::before {
+    width: 100px;
+  }
+
+  .ctaSection {
+    padding: 50px 20px 40px;
+  }
+
+  .ctaButton {
+    font-size: 0.95rem;
+    padding: 14px 30px;
+  }
+
+  .ctaDescription {
+    font-size: 1rem;
+  }
+
+  .formContainer {
+    padding: 1.5rem;
+  }
+
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .input {
+    padding: 0.875rem 1rem;
+  }
+
+  .submitButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}

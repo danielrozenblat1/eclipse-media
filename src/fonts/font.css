@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Assistant';
+  src: url('./Assistant-VariableFont_wght.ttf') format('truetype');
+  font-weight:800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AssistantR';
+  src: url('./Assistant-VariableFont_wght.ttf') format('truetype');
+  font-weight:300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HeeboR';
+  src: url('./Heebo-VariableFont_wght.ttf') format('truetype');
+  font-weight:300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Alata';
+  src: url('./Alata-Regular.ttf') format('truetype');
+
+  font-style: normal;
+}

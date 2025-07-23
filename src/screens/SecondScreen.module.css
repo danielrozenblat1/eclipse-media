@@ -1,0 +1,57 @@
+/* SecondScreen.module.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Alata:wght@400&display=swap');
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  padding-top: 8rem; /* מרווח מלמעלה */
+}
+
+.title {
+  font-family: 'Alata';
+  font-size: 3.5rem;
+  color: white;
+  text-align: center;
+font-weight: 600; 
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+  background: linear-gradient(90deg, #18BFC5 0%, #18BFC5 50%, rgb(91, 91, 91) 50%, rgb(138, 138, 138) 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 1.2s ease-in-out;
+}
+
+.title.revealed {
+  background-position: 0% 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 6rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-top: 4rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,109 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-family: "Alata";
+  text-align: center;
+  margin: 1% auto;
+  direction: rtl;
+  width: 100%;
+  font-weight: 800;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.explain {
+  font-size: 25px;
+  direction: rtl;
+  width: 65%;
+  text-align: center;
+  margin: 2% auto;
+  font-family: "AssistantR";
+}
+
+.scrollTrack {
+  display: flex;
+  width: fit-content;
+  animation: scroll 30s linear infinite;
+  gap: 40px; /* הגדלתי את הרווח בין הקבוצות */
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 40px; /* הגדלתי את הרווח בין התמונות */
+  padding: 20px 0;
+  align-items: center;
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+  height: 60px; /* הקטנתי מ-80px ל-60px */
+  width: auto;
+}
+
+.image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 450px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .explain {
+    font-size: 18px;
+    width: 90%;
+  }
+
+  .imageWrapper {
+    height: 45px; /* הקטנתי מ-60px ל-45px */
+  }
+  
+  .scrollContainer {
+    gap: 30px; /* רווח מותאם למובייל */
+  }
+  
+  .scrollTrack {
+    gap: 30px;
+  }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 1050px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .explain {
+    font-size: 20px;
+    width: 80%;
+  }
+
+  .imageWrapper {
+    height: 50px; /* הקטנתי מ-70px ל-50px */
+  }
+  
+  .scrollContainer {
+    gap: 35px; /* רווח מותאם לטאבלט */
+  }
+  
+  .scrollTrack {
+    gap: 35px;
+  }
+}

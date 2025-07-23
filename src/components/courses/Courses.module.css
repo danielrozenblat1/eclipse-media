@@ -1,0 +1,391 @@
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1.25rem;
+  }
+  
+  .container {
+    background: linear-gradient(135deg, #faf3ee 0%, #fcf6f1 50%, #fdf8f3 100%);
+    border-radius: 1rem;
+    box-shadow: 
+      0 10px 20px rgba(224, 216, 207, 0.2),
+      0 2px 6px rgba(224, 216, 207, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    border: 1px solid rgba(233, 227, 220, 0.4);
+    direction: rtl;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .container:hover {
+    box-shadow: 
+      0 15px 30px rgba(224, 216, 207, 0.3),
+      0 4px 8px rgba(224, 216, 207, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  }
+  
+  .toggleButton {
+    width: 100%;
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: right;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .toggleButton:hover {
+    background-color: rgba(248, 244, 241, 0.9);
+  }
+  
+  .buttonContent {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  
+  .iconWrapper {
+    width: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.4) 0%, rgba(233, 227, 220, 0.2) 100%);
+    border-radius: 1rem;
+    box-shadow: 
+      inset 0 2px 4px rgba(255, 255, 255, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .toggleButton:hover .iconWrapper {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.5) 0%, rgba(233, 227, 220, 0.3) 100%);
+  }
+  
+  .mainIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #7d756d;
+    transition: all 0.3s ease;
+  }
+  
+  .toggleButton:hover .mainIcon {
+    color: #555048;
+  }
+  
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .title {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+    color: #555048;
+    letter-spacing: -0.02em;
+  }
+  
+  .subtitle {
+    font-family: 'AssistantR', sans-serif;
+    color: #7d756d;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .toggleIconWrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.4) 0%, rgba(233, 227, 220, 0.2) 100%);
+    border-radius: 0.75rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .toggleIcon {
+    color: #555048;
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .open .toggleIconWrapper {
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.5) 0%, rgba(233, 227, 220, 0.3) 100%);
+  }
+  
+  .contentWrapper {
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  
+  .content {
+    padding: 0 2rem 2rem;
+    background-color: rgba(248, 244, 241, 0.9);
+  }
+  
+  .noteSection {
+    margin-bottom: 2rem;
+  }
+  
+  .note {
+    font-family: 'AssistantR', sans-serif;
+    color: #7d756d;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    padding: 1rem;
+    background-color: rgba(233, 227, 220, 0.2);
+    border-radius: 0.75rem;
+  }
+  
+  .sectionTitle {
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
+    color: #555048;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .detailsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .detailItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'AssistantR', sans-serif;
+    color: #7d756d;
+    font-size: 1.125rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  .detailItem:nth-child(5n+1) {
+    background: rgba(252, 248, 244, 0.5);
+  }
+  
+  .detailItem:nth-child(5n+2) {
+    background: rgba(251, 247, 242, 0.5);
+  }
+  
+  .detailItem:nth-child(5n+3) {
+    background: rgba(250, 246, 240, 0.5);
+  }
+  
+  .detailItem:nth-child(5n+4) {
+    background: rgba(249, 244, 238, 0.5);
+  }
+  
+  .detailItem:nth-child(5n+5) {
+    background: rgba(248, 243, 236, 0.5);
+  }
+  
+  .detailItem:nth-child(5n+1):hover {
+    background: rgba(252, 248, 244, 0.8);
+    transform: translateX(-4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailItem:nth-child(5n+2):hover {
+    background: rgba(251, 247, 242, 0.8);
+    transform: translateX(-4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailItem:nth-child(5n+3):hover {
+    background: rgba(250, 246, 240, 0.8);
+    transform: translateX(-4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailItem:nth-child(5n+4):hover {
+    background: rgba(249, 244, 238, 0.8);
+    transform: translateX(-4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailItem:nth-child(5n+5):hover {
+    background: rgba(248, 243, 236, 0.8);
+    transform: translateX(-4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailItem:nth-child(5n+1) .detailIconWrapper {
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.35) 0%, rgba(233, 227, 220, 0.15) 100%);
+  }
+  
+  .detailItem:nth-child(5n+2) .detailIconWrapper {
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.375) 0%, rgba(233, 227, 220, 0.175) 100%);
+  }
+  
+  .detailItem:nth-child(5n+3) .detailIconWrapper {
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.4) 0%, rgba(233, 227, 220, 0.2) 100%);
+  }
+  
+  .detailItem:nth-child(5n+4) .detailIconWrapper {
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.425) 0%, rgba(233, 227, 220, 0.225) 100%);
+  }
+  
+  .detailItem:nth-child(5n+5) .detailIconWrapper {
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.45) 0%, rgba(233, 227, 220, 0.25) 100%);
+  }
+  
+  .detailIconWrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .detailItem:hover .detailIconWrapper {
+    transform: scale(1.05);
+  }
+  
+  .detailIconWrapper svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #7d756d;
+  }
+  
+  .detailText {
+    flex: 1;
+  }
+  
+  .priceSection {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  
+  .price {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #555048;
+    background: linear-gradient(135deg, rgba(233, 227, 220, 0.4) 0%, rgba(233, 227, 220, 0.2) 100%);
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    display: inline-block;
+  }
+  
+  .ctaSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .ctaButton {
+    background: linear-gradient(135deg, #555048 0%, #7d756d 100%);
+    color: #F8F7F6;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem 2.5rem;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+      0 4px 6px rgba(85, 80, 72, 0.1),
+      0 1px 3px rgba(85, 80, 72, 0.08);
+  }
+  
+  .ctaButton:hover {
+    box-shadow: 
+      0 6px 8px rgba(85, 80, 72, 0.15),
+      0 2px 4px rgba(85, 80, 72, 0.12);
+    background: linear-gradient(135deg, #5d574f 0%, #847b73 100%);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      margin: 0;
+    }
+    
+    .iconWrapper {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    
+    .mainIcon {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .title {
+      font-size: 1.5rem;
+    }
+    
+    .content {
+      padding: 0 1.5rem 1.5rem;
+    }
+    
+    .detailItem {
+      padding: 0.875rem;
+      font-size: 1rem;
+    }
+    
+    .detailIconWrapper {
+      width: 2rem;
+      height: 2rem;
+    }
+    
+    .detailIconWrapper svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    
+    .priceSection {
+      margin: 1.5rem 0;
+    }
+    
+    .price {
+      font-size: 1.75rem;
+      padding: 0.875rem 2rem;
+    }
+    
+    .ctaButton {
+      padding: 0.875rem 2rem;
+    }
+  }
+  
+  @media (min-width: 850px) and (max-width: 950px) {
+    .title {
+      font-size: 1.6rem;
+    }
+  }
+  
+  @media (min-width: 950px) and (max-width: 1050px) {
+    .title {
+      font-size: 1.7rem;
+    }
+  }
+  
+  @media (min-width: 1050px) {
+    .title {
+      font-size: 1.75rem;
+    }
+  }

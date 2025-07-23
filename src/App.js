@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import HeroSection from './screens/FirstScreen';
+import SecondScreen from './screens/SecondScreen';
+import ScrollVelocity from './screens/EclipseScreen';
+import { useState } from 'react';
+import ThirdScreen from './screens/ThirdScreen';
+import ForthScreen from './screens/ForthScreen';
+import LightRays from './screens/FifthScreen';
+import SixthScreen from './screens/SixthScreen';
+import ByMe from './components/ByMe/ByMe';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  return <>
+  <HeroSection/>
+
+   <ForthScreen/>
+  {/* <ThirdScreen/> */}
+
+  
+  <SixthScreen/>
+
+   {/* <SecondScreen/> */}
+  
+  </>
 }
 
 export default App;

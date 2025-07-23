@@ -1,0 +1,219 @@
+.infoBox {
+    border-radius: 1rem;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05),
+    0 0 40px 0 rgba(0, 0, 0, 0.03),
+    inset 0 0 40px 0 rgba(96, 95, 95, 0.144);
+    padding: 1.5rem;
+    display: flex;
+    width: 300px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: transparent;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-family: "Assistant", sans-serif;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2B1810; /* שינוי לחום כהה */
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .image {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-family: 'AssistantR', sans-serif;
+    font-size: 1.1rem;
+    direction: rtl;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #2B1810; /* שינוי לחום כהה */
+    flex-grow: 1;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 350px) {
+    .infoBox {
+      width: 200px;
+      padding: 1rem;
+      margin: 25px auto;
+    }
+    .title {
+      font-size: 1.3rem;
+    }
+    .image {
+      height: 150px;
+    }
+    .description {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (min-width: 350px) and (max-width: 450px) {
+    .infoBox {
+      width: 230px;
+      height: auto;
+      padding: 0.9rem;
+      margin: 2rem auto;
+      
+    }
+    .title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .image {
+      height: 120px;
+      margin-bottom: 0.5rem;
+    }
+    .description {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (min-width: 450px) and (max-width: 550px) {
+    .infoBox {
+      width: 180px;
+      padding: 1rem;
+      margin: 0.9rem;
+    }
+    .title {
+      font-size: 1.15rem;
+    }
+    .image {
+      height: 130px;
+    }
+    .description {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (min-width: 550px) and (max-width: 650px) {
+    .infoBox {
+      width: 220px;
+      padding: 1rem;
+      margin: 0.7rem;
+    }
+    .title {
+      font-size: 1.2rem;
+    }
+    .image {
+      height: 140px;
+    }
+    .description {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (min-width: 650px) and (max-width: 750px) {
+    .infoBox {
+      width: 200px;
+      padding: 0.8rem;
+      margin: 0.55rem;
+    }
+    .title {
+      font-size: 1.25rem;
+    }
+    .image {
+      height: 150px;
+    }
+    .description {
+      font-size: 1.05rem;
+    }
+  }
+  
+  @media (min-width: 750px) and (max-width: 850px) {
+    .infoBox {
+      width: 210px;
+      padding: 0.85rem;
+      margin: 0.6rem;
+    }
+    .title {
+      font-size: 1.3rem;
+    }
+    .image {
+      height: 160px;
+    }
+    .description {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (min-width: 850px) and (max-width: 950px) {
+    .infoBox {
+      width: 230px;
+      padding: 0.9rem;
+      margin: 0.65rem;
+    }
+    .title {
+      font-size: 1.35rem;
+    }
+    .image {
+      height: 170px;
+    }
+  }
+  
+  @media (min-width: 950px) and (max-width: 1050px) {
+    .infoBox {
+      width: 240px;
+      padding: 0.95rem;
+      margin: 0.7rem;
+    }
+    .title {
+      font-size: 1.4rem;
+    }
+    .image {
+      height: 180px;
+    }
+  }
+  
+  @media (min-width: 1050px) and (max-width: 1150px) {
+    .infoBox {
+      width: 245px;
+      padding: 1rem;
+      margin: 0.75rem;
+    }
+    .title {
+      font-size: 1.45rem;
+    }
+    .image {
+      height: 190px;
+    }
+    .description {
+      font-size: 1.15rem;
+    }
+  }
+  
+  @media (min-width: 1150px) and (max-width: 1250px) {
+    .infoBox {
+      width: 250px;
+      padding: 1.05rem;
+      margin: 0.8rem;
+    }
+    .title {
+      font-size: 1.5rem;
+    }
+    .image {
+      height: 200px;
+    }
+    .description {
+      font-size: 1.2rem;
+    }
+  }

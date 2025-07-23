@@ -1,0 +1,583 @@
+.container {
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+/* שומר על העיצוב המקורי של הכותרת כי אהבת אותו */
+.titleWrapper {
+  position: relative;
+
+  text-align: center;
+  padding: 2rem;
+  direction: rtl;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: "Assistant";
+  color: rgb(213, 187, 157);
+  padding: 0.5em 0;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(213, 187, 157, 0.2);
+  line-height: 1.4;
+}
+
+.title::before,
+.title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(213, 187, 157, 0.5),
+    rgba(213, 187, 157, 0.8),
+    rgba(213, 187, 157, 0.5),
+    transparent
+  );
+}
+
+.title::before {
+  top: 0;
+}
+
+.title::after {
+  bottom: 0;
+}
+
+/* עיצוב חדש לקארדים בהשראת ה-NewBox */
+.itemsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(165deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(250, 244, 237, 0.8) 100%
+  );
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(235, 225, 215, 0.8);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02),
+    0 0 15px 2px rgba(255, 192, 203, 0.08),
+    inset 4px 4px 8px rgba(213, 187, 157, 0.2),
+    inset -4px -4px 8px rgba(235, 225, 215, 0.3),
+    inset -8px -8px 16px rgba(244, 235, 225, 0.2),
+    inset 8px 8px 16px rgba(213, 187, 157, 0.15),
+    inset 12px 12px 24px rgba(213, 187, 157, 0.1),
+    inset -12px -12px 24px rgba(244, 235, 225, 0.3);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(213, 187, 157, 0.1) 50%,
+    rgba(213, 187, 157, 0.15) 75%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  pointer-events: none;
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.06),
+    0 10px 10px -5px rgba(0, 0, 0, 0.03),
+    0 0 20px 3px rgba(255, 192, 203, 0.1),
+    inset 6px 6px 12px rgba(213, 187, 157, 0.25),
+    inset -6px -6px 12px rgba(235, 225, 215, 0.35),
+    inset -10px -10px 20px rgba(244, 235, 225, 0.3),
+    inset 10px 10px 20px rgba(213, 187, 157, 0.2),
+    inset 14px 14px 28px rgba(213, 187, 157, 0.15),
+    inset -14px -14px 28px rgba(244, 235, 225, 0.35);
+}
+
+.checkmarkWrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, 
+    rgba(213, 187, 157, 1),
+    rgba(235, 225, 215, 0.95)
+  );
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.08),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 4px rgba(213, 187, 157, 0.5);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  width: 28px;
+  height: 28px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.textWrapper {
+  flex: 1;
+}
+
+.itemText {
+  font-size: 1.25rem;
+  color: #5A4A42;
+  line-height: 1.6;
+  font-family: "AssistantR";
+}
+
+.buttonWrapper {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+/* Animations */
+.revealItem {
+  opacity: 0;
+}
+
+.animateFadeIn {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.container {
+  width: 65%;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+  margin: 0 auto;
+}
+
+.titleWrapper {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  direction: rtl;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  position: relative;
+  font-weight: bold;
+  font-family: "Assistant";
+  color: rgb(213, 187, 157);
+  padding: 0.5em 0;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(213, 187, 157, 0.2);
+  line-height: 1.4;
+}
+
+.title::before,
+.title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(213, 187, 157, 0.5),
+    rgba(213, 187, 157, 0.8),
+    rgba(213, 187, 157, 0.5),
+    transparent
+  );
+}
+
+.title::before {
+  top: 0;
+}
+
+.title::after {
+  bottom: 0;
+}
+
+.itemsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(165deg, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(250, 244, 237, 0.8) 100%
+  );
+  border-radius: 30px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(235, 225, 215, 0.8);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02),
+    0 0 15px 2px rgba(255, 192, 203, 0.08),
+    inset 4px 4px 8px rgba(213, 187, 157, 0.2),
+    inset -4px -4px 8px rgba(235, 225, 215, 0.3);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Base styles for smallest screens (under 350px) */
+@media only screen and (max-width: 350px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .container {
+    width: 95%;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    margin: 0 auto;
+  }
+  .card {
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .checkIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .itemText {
+    font-size: 0.9rem;
+  }
+}
+
+/* 350px - 450px */
+@media only screen and (min-width: 350px) and (max-width: 450px) {
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .card {
+    padding: 1.1rem;
+    gap: 0.9rem;
+  }
+  .container {
+    width: 95%;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    margin: 0 auto;
+  }
+  .checkmarkWrapper {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .checkIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .itemText {
+    font-size: 0.95rem;
+  }
+}
+
+/* 450px - 550px */
+@media only screen and (min-width: 450px) and (max-width: 550px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+    gap: 1rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 36px;
+    height: 36px;
+  }
+  .container {
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    margin: 0 auto;
+  }
+  .checkIcon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .itemText {
+    font-size: 1rem;
+  }
+}
+
+/* 550px - 650px */
+@media only screen and (min-width: 550px) and (max-width: 650px) {
+  .title {
+    font-size: 2.25rem;
+  }
+  
+  .card {
+    padding: 1.3rem;
+    gap: 1.1rem;
+  }
+  .container {
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    margin: 0 auto;
+  }
+  .checkmarkWrapper {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .checkIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .itemText {
+    font-size: 1.1rem;
+  }
+}
+
+/* 650px - 750px */
+@media only screen and (min-width: 650px) and (max-width: 750px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .card {
+    padding: 1.4rem;
+    gap: 1.2rem;
+  }
+  .container {
+    width: 75%;
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    margin: 0 auto;
+  }
+  .checkmarkWrapper {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .checkIcon {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .itemText {
+    font-size: 1.15rem;
+  }
+}
+
+/* 750px - 850px */
+@media only screen and (min-width: 750px) and (max-width: 850px) {
+  .title {
+    font-size: 2.75rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+    gap: 1.3rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .checkIcon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .itemText {
+    font-size: 1.2rem;
+  }
+}
+
+/* 850px - 950px */
+@media only screen and (min-width: 850px) and (max-width: 950px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .card {
+    padding: 1.6rem;
+    gap: 1.4rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .checkIcon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .itemText {
+    font-size: 1.22rem;
+  }
+}
+
+/* 950px - 1050px */
+@media only screen and (min-width: 950px) and (max-width: 1050px) {
+  .title {
+    font-size: 3.25rem;
+  }
+  
+  .card {
+    padding: 1.7rem;
+    gap: 1.5rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 46px;
+    height: 46px;
+  }
+  
+  .checkIcon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .itemText {
+    font-size: 1.23rem;
+  }
+}
+
+/* 1050px - 1150px */
+@media only screen and (min-width: 1050px) and (max-width: 1150px) {
+  .title {
+    font-size: 3.35rem;
+  }
+  
+  .card {
+    padding: 1.8rem;
+    gap: 1.5rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .checkIcon {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .itemText {
+    font-size: 1.24rem;
+  }
+}
+
+/* 1150px - 1250px */
+@media only screen and (min-width: 1150px) and (max-width: 1250px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .card {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .checkmarkWrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .checkIcon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .itemText {
+    font-size: 1.25rem;
+  }
+}
+
+/* Animations */
+.revealItem {
+  opacity: 0;
+}
+
+.animateFadeIn {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

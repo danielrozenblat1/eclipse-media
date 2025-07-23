@@ -1,0 +1,270 @@
+.outer {
+    position: relative;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1rem;
+    direction: rtl;
+}
+
+.backgroundShapes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.shape1, .shape2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+}
+
+.shape1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #e9e3dc 0%, #d8d2cb 100%);
+    top: 20%;
+    right: 10%;
+    animation: float1 8s ease-in-out infinite;
+}
+
+.shape2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #d8d2cb 0%, #c7c1ba 100%);
+    bottom: 20%;
+    left: 10%;
+    animation: float2 10s ease-in-out infinite;
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-20px, 20px) rotate(5deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, -10px) rotate(-5deg); }
+}
+
+.benefitsContainer {
+    position: relative;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.glassOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 3;
+}
+
+.benefitsHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.titleWrapper {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: rgba(233, 227, 220, 0.3);
+    border-radius: 1rem;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.benefitsTitle {
+    font-family: 'Assistant', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #555048;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.benefitsGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+.benefitItem {
+    position: relative;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.benefitGlass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.benefitContent {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    z-index: 2;
+}
+
+.benefitItem:hover {
+    transform: translateX(-5px);
+}
+
+.benefitItem:hover .benefitGlass {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.iconContainer {
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.iconGlow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, 
+        rgba(233, 227, 220, 0.8) 0%,
+        rgba(233, 227, 220, 0) 70%
+    );
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.iconWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(233, 227, 220, 0.3);
+    border-radius: 1rem;
+    border: 1px solid rgba(233, 227, 220, 0.3);
+    transition: all 0.3s ease;
+}
+
+.benefitItem:hover .iconGlow {
+    opacity: 1;
+}
+
+.benefitItem:hover .iconWrapper {
+    background: rgba(233, 227, 220, 0.4);
+    transform: scale(1.05);
+}
+
+.iconWrapper svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #555048;
+    transition: all 0.3s ease;
+}
+
+.benefitItem:hover .iconWrapper svg {
+    transform: scale(1.1);
+    color: #3d3a36;
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.benefitText {
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
+    color: #555048;
+    font-size: 1.25rem;
+}
+
+.benefitDescription {
+    font-family: 'AssistantR', sans-serif;
+    color: #7d756d;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .benefitsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .benefitItem:last-child {
+        grid-column: 1 / -1;
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .outer {
+        margin: 0.5rem auto;
+    }
+
+    .benefitsContainer {
+        padding: 1.5rem;
+    }
+
+    .benefitsTitle {
+        font-size: 1.75rem;
+    }
+
+    .iconContainer {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .iconWrapper svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .benefitText {
+        font-size: 1.15rem;
+    }
+
+    .benefitDescription {
+        font-size: 0.9rem;
+    }
+}

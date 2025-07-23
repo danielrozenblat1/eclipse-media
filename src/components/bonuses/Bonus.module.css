@@ -1,0 +1,218 @@
+.benefitContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    direction: rtl;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .title {
+    position: relative;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "Assistant";
+    color: rgb(162, 133, 101);
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 0.5em 0;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.1),
+      0 0 20px rgba(213, 187, 157, 0.2);
+    line-height: 1.4;
+  }
+  
+  .title::before,
+  .title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right,
+      transparent,
+      rgba(213, 187, 157, 0.5),
+      rgba(213, 187, 157, 0.8),
+      rgba(213, 187, 157, 0.5),
+      transparent
+    );
+  }
+  
+  .title::before {
+    top: 0;
+  }
+  
+  .title::after {
+    bottom: 0;
+  }
+  
+  .cardsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  
+  .card {
+    flex: 0 1 300px;
+    max-width: 300px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(165deg, 
+      rgba(74, 52, 27, 1) 0%,
+      rgba(71, 45, 15, 1) 100%
+    );
+    border-radius: 30px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(235, 225, 215, 0.3);
+    box-shadow: 
+      0 10px 30px -5px rgba(0, 0, 0, 0.05),
+      0 20px 40px -10px rgba(0, 0, 0, 0.02),
+      inset 0 0 0.5px 0.5px rgba(213, 187, 157, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.2) 25%,
+      rgba(213, 187, 157, 0.05) 50%,
+      rgba(213, 187, 157, 0.1) 75%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    pointer-events: none;
+    border-radius: 30px;
+    z-index: -1;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 20px 40px -5px rgba(0, 0, 0, 0.1),
+      0 30px 50px -10px rgba(0, 0, 0, 0.05),
+      inset 0 0 1px 0.5px rgba(213, 187, 157, 0.15);
+  }
+  
+  .numberOverlay {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    font-size: 160px;
+    font-weight: 900;
+    color: transparent;
+    font-family: 'Assistant', sans-serif;
+    pointer-events: none;
+    z-index: 0;
+    line-height: 1;
+    background-image: linear-gradient(135deg, rgba(213, 187, 157, 0.25), rgba(235, 225, 215, 0.2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    opacity: 0.65;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 2px 2px 4px rgba(213, 187, 157, 0.05);
+  }
+  
+  .card:hover .numberOverlay {
+    transform: translateY(-5%) rotate(-5deg);
+    opacity: 0.8;
+  }
+  
+  .icon {
+width:30%;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: 1.5rem 0;
+    filter: drop-shadow(0 4px 6px rgba(213, 187, 157, 0.15));
+  }
+  
+  .card:hover .icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .cardTitle {
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: rgb(213, 187, 157);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  .cardDescription {
+    font-family: 'AssistantR', sans-serif;
+    font-weight: 300;
+    color: #e4c3b3;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 0 0.75rem;
+  }
+  
+  @media (max-width: 768px) {
+    .cardsGrid {
+      justify-content: center;
+    }
+    
+    .card {
+      flex: 0 1 280px;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      flex: 0 1 100%;
+      max-width: 260px;
+      height: auto;
+      min-height: 300px;
+    }
+    
+    .title {
+      font-size: 1.75rem;
+    }
+    
+    .numberOverlay {
+      font-size: 140px;
+    }
+    
+    .icon {
+      width: 4rem;
+      height: 4rem;
+    }
+    
+    .cardTitle {
+      font-size: 1.3rem;
+    }
+    
+    .cardDescription {
+      font-size: 1rem;
+    }
+  }

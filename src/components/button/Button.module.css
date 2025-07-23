@@ -1,0 +1,76 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 2% auto;
+}
+
+.button {
+  position: relative;
+  /* חיזוק הגרדיאנט לקונטרסט מעט גבוה יותר */
+  background: linear-gradient(135deg, #f8f0e9 0%, #fcf6f1 50%, #fff8f3 100%);
+  border: 1px solid rgba(233, 227, 220, 0.5);  /* הגדלת האטימות של הבורדר */
+  color: #4a4540;  /* צבע טקסט כהה יותר לקריאות משופרת */
+  padding: 16px 36px;  /* הגדלת הפדינג מעט */
+  font-size: 1.15rem;  /* הגדלת הטקסט במעט */
+  font-family: "AssistantR", sans-serif;
+  direction: rtl;
+  border-radius: 0.85rem;  /* הגדלת העיגול במעט */
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 14px 28px rgba(224, 216, 207, 0.35),  /* צל חיצוני חזק יותר */
+    0 6px 10px rgba(224, 216, 207, 0.2),
+    inset 0 0 10px rgba(185, 178, 170, 0.25),  /* צל פנימי חזק יותר */
+    inset 0 1px 3px rgba(185, 178, 170, 0.2),
+    inset 0 -2px 3px rgba(255, 255, 255, 0.8);
+}
+
+.button:hover {
+
+  box-shadow: 
+    0 20px 40px rgba(224, 216, 207, 0.4),
+    0 8px 16px rgba(224, 216, 207, 0.25),
+    inset 0 0 15px rgba(185, 178, 170, 0.3),
+    inset 0 1px 4px rgba(185, 178, 170, 0.25),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.9);
+
+}
+
+.button:active {
+  transform: translateY(1px);
+  box-shadow: 
+    0 8px 16px rgba(224, 216, 207, 0.3),
+    0 3px 6px rgba(224, 216, 207, 0.15),
+    inset 0 0 18px rgba(185, 178, 170, 0.35),
+    inset 0 2px 5px rgba(185, 178, 170, 0.3);
+}
+
+/* שיפור אנימציית הברק */
+.shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.5) 50%,  /* הגדלת האטימות של הברק */
+    rgba(255, 255, 255, 0) 75%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: shine 8s infinite linear;  /* האטת האנימציה מעט */
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: translate(-100%, -100%) rotate(25deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(25deg);
+  }
+}
