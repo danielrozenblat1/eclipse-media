@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './FirstScreen.module.css';
 import DarkVeil from './DarkVeil';
+import Loader from '../components/loader/Loader';
 
 // ייבוא תמונות תדמית
 import hero1 from "../images/אקליפס תמונות ייחודיות 1.png";
@@ -13,12 +14,13 @@ import hero7 from "../images/אקליפס תמונות ייחודיות 7.png";
 import hero8 from "../images/אקליפס תמונות ייחודיות 8.png";
 import hero9 from "../images/אקליפס תמונות ייחודיות 9.png";
 
-
 import eclipse from "../images/אקליפס לוגו ללא רקע לבן.png";
 
 const HeroSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',
@@ -29,12 +31,42 @@ const HeroSection = () => {
   const scrollPosition = useRef(0);
 
   const heroImages = [
-   hero2, hero3, hero4,  hero1, hero5, hero6, hero7,
+    hero2, hero3, hero4, hero1, hero5, hero6, hero7,
     hero8, hero9
   ];
 
+  // כל התמונות כולל הלוגו
+  const allImages = [...heroImages, eclipse];
+  const totalImages = allImages.length;
+
   // שכפול התמונות 3 פעמים כדי ליצור אפקט אינסופי חלק
   const duplicatedImages = [...heroImages, ...heroImages, ...heroImages];
+
+  // פונקציה לטעינת תמונות
+  const preloadImages = () => {
+    let loadedCount = 0;
+
+    allImages.forEach((imageSrc) => {
+      const img = new Image();
+      img.onload = () => {
+        loadedCount++;
+        setLoadedImagesCount(loadedCount);
+        
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        setLoadedImagesCount(loadedCount);
+        
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.src = imageSrc;
+    });
+  };
 
   const startAutoScroll = () => {
     const scrollStep = 1.25; // הקטנת מהירות הגלילה פי 2
@@ -81,6 +113,14 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
+    // התחלת טעינת התמונות
+    preloadImages();
+  }, []);
+
+  useEffect(() => {
+    // הגדרת הקרוסלה רק אחרי שהתמונות נטענו
+    if (!imagesLoaded) return;
+
     const carousel = carouselRef.current;
     if (!carousel) return;
 
@@ -103,7 +143,12 @@ const HeroSection = () => {
         carousel.removeEventListener("mouseleave", startAutoScroll);
       }
     };
-  }, []);
+  }, [imagesLoaded]);
+
+  // אם התמונות עדיין לא נטענו, הצג את הLoader
+  if (!imagesLoaded) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -126,10 +171,8 @@ const HeroSection = () => {
 
         <h1 className={styles.title}>Make Your Brand Unique</h1>
         <p className={styles.description}>
-   Create a unique fingerprint for your company and make your employees' LinkedIn profiles stand out and memorable among thousands of other companies and professionals.
+          Create a unique fingerprint for your company and make your employees' LinkedIn profiles stand out and memorable among thousands of other companies and professionals.
         </p>
-
-    
 
         <div className={styles.carousel} ref={carouselRef}>
           {duplicatedImages.map((img, index) => (
@@ -145,11 +188,12 @@ const HeroSection = () => {
             </div>
           ))}
         </div>
-            <button 
+        
+        <button 
           className={styles.ctaButton}
           onClick={() => setShowOverlay(true)}
         >
-click here to contact us
+          click here to contact us
         </button>
       </div>
 

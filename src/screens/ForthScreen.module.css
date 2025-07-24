@@ -31,7 +31,6 @@
 .headerTitle {
   margin-bottom: 30px;
   font-family: 'Alata';
-
   font-weight: 600;
 }
 
@@ -313,9 +312,9 @@
 }
 
 .ctaTitle {
- display: inline-block;
-    width:75%;
-    margin:2% auto;
+  display: inline-block;
+  width: 75%;
+  margin: 2% auto;
   font-family: 'Alata';
   font-weight: 600;
 }
@@ -369,13 +368,13 @@
   transform: translateY(-1px);
 }
 
-/* Overlay */
+/* Overlay - עדכון לריכוז מושלם */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   z-index: 99999;
@@ -384,6 +383,7 @@
   align-items: center;
   padding: 2rem;
   animation: fadeIn 0.3s ease-out;
+  overflow-y: auto;
 }
 
 @keyframes fadeIn {
@@ -404,12 +404,16 @@
   padding: 2.5rem;
   width: 100%;
   max-width: 500px;
+  min-width: 320px;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
               0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   animation: slideUp 0.4s ease-out;
   direction: ltr;
   z-index: 100000;
+  margin: auto;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 @keyframes slideUp {
@@ -551,6 +555,19 @@
   transform: translateY(0);
 }
 
+/* הוספת סגנון נוסף לווידוא שהטופס נשאר במרכז */
+.overlay::before {
+  content: '';
+  flex: 1;
+  min-height: 0;
+}
+
+.overlay::after {
+  content: '';
+  flex: 1;
+  min-height: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .stepContent {
@@ -645,9 +662,34 @@
     padding: 16px 35px;
   }
 
+  /* תיקון לריכוז מושלם של הטופס במובייל */
+  .overlay {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+
+  .overlay::before,
+  .overlay::after {
+    display: none; /* מסיר את הפסאודו אלמנטים שמפריעים */
+  }
+
   .formContainer {
     padding: 2rem;
-    margin: 1rem;
+    width: 100%;
+    max-width: 320px;
+    max-height: 85vh;
+    margin: 0; /* מסיר margin שיכול להפריע */
+    position: static; /* מסיר positioning שיכול להפריע */
+    transform: none; /* מסיר transform שיכול להפריע */
+    flex-shrink: 0;
   }
 
   .formTitle {
@@ -687,7 +729,7 @@
   }
 
   .ctaSection {
-    padding: 50px 20px 40px;
+    padding: 10px 20px 40px;
   }
 
   .ctaButton {
@@ -699,8 +741,14 @@
     font-size: 1rem;
   }
 
+  .overlay {
+    padding: 0.5rem;
+  }
+
   .formContainer {
     padding: 1.5rem;
+    max-width: 290px;
+    max-height: 80vh;
   }
 
   .formTitle {

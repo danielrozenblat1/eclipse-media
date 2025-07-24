@@ -1,5 +1,5 @@
-.container{
-   position: relative;
+.container {
+  position: relative;
   background: #ffffff;
   overflow-x: hidden;
   z-index: 10;
@@ -18,7 +18,7 @@
 .imageContainer {
   display: flex;
   justify-content: center;
-  margin: 2% auto 
+  margin: 2% auto;
 }
 
 .imageLink {
@@ -37,16 +37,192 @@
   object-fit: contain;
   display: block;
 }
-  .imageLink {
-    width: 40%;
-  }
-/* רספונסיביות */
 
 .description {
   font-size: 1.4rem;
-
   color: #4a4a4a;
-margin:2% auto;
-text-align: center;
+  margin: 2% auto;
+  text-align: center;
   font-family: 'HeeboR';
+}
+
+/* רספונסיביות */
+
+/* מתחת ל-350px */
+@media (max-width: 349px) {
+  .title {
+    font-size: 1.4rem;
+    margin: 3% auto;
+  }
+  
+  .imageLink {
+    width: 90%;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    margin: 3% auto;
+    padding: 0 5%;
+  }
+}
+
+/* 350-450px */
+@media (min-width: 350px) and (max-width: 450px) {
+  .title {
+    font-size: 1.6rem;
+    margin: 3% auto;
+  }
+  
+  .imageLink {
+    width: 85%;
+  }
+  
+  .description {
+    font-size: 1rem;
+    margin: 3% auto;
+    padding: 0 3%;
+  }
+}
+
+/* 450-550px */
+@media (min-width: 451px) and (max-width: 550px) {
+  .title {
+    font-size: 1.8rem;
+    margin: 2.5% auto;
+  }
+  
+  .imageLink {
+    width: 75%;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+    margin: 2.5% auto;
+  }
+}
+
+/* 550-650px */
+@media (min-width: 551px) and (max-width: 650px) {
+  .title {
+    font-size: 2rem;
+    margin: 2.5% auto;
+  }
+  
+  .imageLink {
+    width: 65%;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    margin: 2.5% auto;
+  }
+}
+
+/* 650-750px */
+@media (min-width: 651px) and (max-width: 750px) {
+  .title {
+    font-size: 2.1rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 55%;
+  }
+  
+  .description {
+    font-size: 1.25rem;
+    margin: 2% auto;
+  }
+}
+
+/* 750-850px */
+@media (min-width: 751px) and (max-width: 850px) {
+  .title {
+    font-size: 2.2rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 50%;
+  }
+  
+  .description {
+    font-size: 1.3rem;
+    margin: 2% auto;
+  }
+}
+
+/* 850-950px */
+@media (min-width: 851px) and (max-width: 950px) {
+  .title {
+    font-size: 2.3rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 45%;
+  }
+  
+  .description {
+    font-size: 1.35rem;
+    margin: 2% auto;
+  }
+}
+
+/* 950-1050px */
+@media (min-width: 951px) and (max-width: 1050px) {
+  .title {
+    font-size: 2.4rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 35%;
+  }
+  
+  .description {
+    font-size: 1.4rem;
+    margin: 2% auto;
+  }
+}
+
+/* 1050-1150px */
+@media (min-width: 1051px) and (max-width: 1150px) {
+  .title {
+    font-size: 2.45rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 30%;
+  }
+  
+  .description {
+    font-size: 1.4rem;
+    margin: 2% auto;
+  }
+}
+
+/* 1150-1250px */
+@media (min-width: 1151px) and (max-width: 1250px) {
+  .title {
+    font-size: 2.5rem;
+    margin: 2% auto;
+  }
+  
+  .imageLink {
+    width: 25%;
+  }
+  
+  .description {
+    font-size: 1.4rem;
+    margin: 2% auto;
+  }
+}
+
+/* מעל 1250px - הגדרות ברירת מחדל */
+@media (min-width: 1251px) {
+  .imageLink {
+    width: 20%;
+  }
 }

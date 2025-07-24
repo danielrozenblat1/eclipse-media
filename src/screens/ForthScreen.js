@@ -207,7 +207,7 @@ const ForthScreen = () => {
           animationDuration={1.2}
           stagger={0.05}
         >
-          Ready to Transform Your Brand?
+          Ready to Make Your Brand Uniqe?
         </ScrollFloat>
         <p className={styles.ctaDescription}>
           Let's create a unique visual identity that sets your company apart and makes your team shine on LinkedIn.
@@ -216,7 +216,7 @@ const ForthScreen = () => {
           className={styles.ctaButton}
           onClick={() => setShowOverlay(true)}
         >
-          Start Your Brand Journey
+          Our Journey Starts Here
         </button>
       </div>
 

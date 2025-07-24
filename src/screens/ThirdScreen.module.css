@@ -12,7 +12,7 @@
 
 .header {
   text-align: center;
-  padding: 100px 20px 80px;
+  padding: 10px 20px 80px;
   background-color: #000000;
   opacity: 0;
   transform: translateY(30px);
@@ -315,7 +315,7 @@ html {
   }
   
   .header {
-    padding: 60px 20px 40px;
+    padding: 0px 20px 40px;
   }
   
   .connectingLine {

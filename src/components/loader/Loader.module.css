@@ -1,100 +1,104 @@
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #FFF9F9;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-.heartContainer {
+.loaderWrapper {
   position: relative;
-  width: 60px;
-  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  width: auto;
+  background-color: rgb(0, 0, 0);
+  margin: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6em;
+  font-weight: 600;
+  user-select: none;
+  color: #fff;
 }
 
-.heart {
+.loader {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #F4BFBF;
-  transform: rotate(45deg);
-  animation: heartBeat 1.5s ease-in-out infinite;
-}
-
-.heart:before,
-.heart:after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #F4BFBF;
-  border-radius: 50%;
-}
-
-.heart:before {
-  left: -15px;
-}
-
-.heart:after {
-  top: -15px;
-}
-
-.sparkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #FFE4E4;
-  border-radius: 50%;
-  animation: sparkleFloat 1.5s ease-in-out infinite;
-}
-
-.sparkle:nth-child(2) {
-  left: 40px;
-  top: 10px;
-}
-
-.sparkle:nth-child(3) {
-  left: 20px;
-  top: -10px;
-}
-
-.sparkle:nth-child(4) {
+  top: 0;
   left: 0;
-  top: 10px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: transparent;
+  mask: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 6px,
+    black 7px,
+    black 8px
+  );
 }
 
-@keyframes heartBeat {
-  0%, 100% {
-    transform: rotate(45deg) scale(1);
+.loaderAfter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 50% 50%, #18BFC5 0%, transparent 50%),
+    radial-gradient(circle at 45% 45%, #14A8AE 0%, transparent 45%),
+    radial-gradient(circle at 55% 55%, #1CD6DC 0%, transparent 45%),
+    radial-gradient(circle at 45% 55%, #20D4DA 0%, transparent 45%),
+    radial-gradient(circle at 55% 45%, #12969C 0%, transparent 45%);
+  mask: radial-gradient(
+    circle at 50% 50%,
+    transparent 0%,
+    transparent 10%,
+    black 25%
+  );
+  animation:
+    transformAnimation 2s infinite alternate,
+    opacityAnimation 4s infinite;
+  animation-timing-function: cubic-bezier(0.6, 0.8, 0.5, 1);
+}
+
+@keyframes transformAnimation {
+  0% {
+    transform: translate(-55%);
+  }
+  100% {
+    transform: translate(55%);
+  }
+}
+
+@keyframes opacityAnimation {
+  0%,
+  100% {
+    opacity: 0;
   }
   15% {
-    transform: rotate(45deg) scale(1.15);
+    opacity: 1;
   }
-  30% {
-    transform: rotate(45deg) scale(1);
-  }
-  45% {
-    transform: rotate(45deg) scale(1.15);
+  65% {
+    opacity: 0;
   }
 }
 
-@keyframes sparkleFloat {
-  0%, 100% {
-    transform: scale(0.8);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
+.loaderLetter {
+  display: inline-block;
+  opacity: 0;
+  animation: loaderLetterAnim 4s infinite linear;
+  z-index: 2;
 }
 
-.text {
-  margin-top: 24px;
-  font-family: "AssistantR", sans-serif;
-  color: #CCA7A7;
-  font-size: 18px;
-  direction: rtl;
-
+@keyframes loaderLetterAnim {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+    text-shadow: 0 0 4px #fff;
+    transform: scale(1.1) translateY(-2px);
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
 }
