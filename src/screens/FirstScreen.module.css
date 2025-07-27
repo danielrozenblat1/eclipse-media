@@ -54,7 +54,7 @@
   font-size: 1.25rem;
   line-height: 1.7;
   max-width: 800px;
-  direction: rtl;
+
   font-family: "HeeboR", "Heebo", sans-serif;
   margin: 0 auto 3rem auto;
   color: rgba(255, 255, 255, 0.9);
@@ -89,7 +89,7 @@
   transform: translateY(0);
 }
 
-/* קרוסלה ראשית */
+/* קרוסלה ראשית - עם תמיכה בגרירה ומגע */
 .carousel {
   display: flex;
   flex-wrap: nowrap;
@@ -102,6 +102,17 @@
   width: 100%;
   max-width: 100vw;
   will-change: scroll-position;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel:active {
+  cursor: grabbing;
 }
 
 .carousel::-webkit-scrollbar {
@@ -115,6 +126,11 @@
   cursor: pointer;
   transform: translateZ(0);
   backface-visibility: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: auto;
 }
 
 .heroImage {
@@ -123,6 +139,16 @@
   border-radius: 1.2rem;
   object-fit: cover;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .blurred {
@@ -359,6 +385,21 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* תמיכה טובה יותר במובייל */
+@media (hover: none) and (pointer: coarse) {
+  .carousel {
+    cursor: default;
+  }
+  
+  .carousel:active {
+    cursor: default;
+  }
+  
+  .carouselSlide {
+    cursor: default;
+  }
 }
 
 /* RESPONSIVE DESIGN - מתחת ל-350px */

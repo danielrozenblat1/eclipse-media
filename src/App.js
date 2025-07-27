@@ -10,6 +10,7 @@ import LightRays from './screens/FifthScreen';
 import SixthScreen from './screens/SixthScreen';
 import ByMe from './components/ByMe/ByMe';
 import SimpleVideoGallery from './components/parralex/Parralex';
+import FloatingWhatsAppButton from './components/FloatingButton/FloatingButton';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
 
   
   <SixthScreen/>
-
+<FloatingWhatsAppButton/>
    {/* <SecondScreen/> */}
   
   </>

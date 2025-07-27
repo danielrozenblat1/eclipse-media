@@ -202,13 +202,13 @@ const ForthScreen = () => {
 
       {/* CTA Section */}
       <div className={styles.ctaSection}>
-        <ScrollFloat
-          containerClassName={styles.ctaTitle}
+        <h1
+         className={styles.ctaTitle}
           animationDuration={1.2}
           stagger={0.05}
         >
           Ready to Make Your Brand Uniqe?
-        </ScrollFloat>
+        </h1>
         <p className={styles.ctaDescription}>
           Let's create a unique visual identity that sets your company apart and makes your team shine on LinkedIn.
         </p>

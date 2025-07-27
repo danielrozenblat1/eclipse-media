@@ -60,7 +60,7 @@ const ThirdScreen = () => {
     <div className={styles.container}>
       <div className={styles.header}>
 
-                 <h1 className={styles.mainTitle}>Why Your Company Needs Professional LinkedIn Photography</h1>
+                 <h1 className={styles.mainTitle}>Why Your Company Needs Professional LinkedIn Photography?</h1>
         <p className={styles.subtitle}>Transform your professional presence and make your brand unique</p>
       </div>
       

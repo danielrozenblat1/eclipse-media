@@ -1,0 +1,96 @@
+/* FloatingWhatsApp.module.css */
+
+.floatingWhatsappContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.floatingWhatsappButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* אפקט זכוכית עדין */
+  background: rgba(24, 191, 197, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(24, 191, 197, 0.3);
+  
+  /* צל עדין */
+  box-shadow: 
+    0 4px 15px rgba(24, 191, 197, 0.2),
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  
+  /* אנימציית מעבר */
+  transition: all 0.3s ease;
+}
+
+.floatingWhatsappButton:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(24, 191, 197, 0.35);
+  box-shadow: 
+    0 6px 20px rgba(24, 191, 197, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.floatingWhatsappButton:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.whatsappIcon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* אנימציית דופק עדינה */
+@keyframes pulse {
+  0% {
+    box-shadow: 
+      0 4px 15px rgba(24, 191, 197, 0.2),
+      0 2px 5px rgba(0, 0, 0, 0.1),
+      0 0 0 0 rgba(24, 191, 197, 0.4);
+  }
+  70% {
+    box-shadow: 
+      0 4px 15px rgba(24, 191, 197, 0.2),
+      0 2px 5px rgba(0, 0, 0, 0.1),
+      0 0 0 10px rgba(24, 191, 197, 0);
+  }
+  100% {
+    box-shadow: 
+      0 4px 15px rgba(24, 191, 197, 0.2),
+      0 2px 5px rgba(0, 0, 0, 0.1),
+      0 0 0 0 rgba(24, 191, 197, 0);
+  }
+}
+
+.floatingWhatsappButton {
+  animation: pulse 2s infinite;
+}
+
+/* עבור מסכים קטנים */
+@media (max-width: 768px) {
+  .floatingWhatsappContainer {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .floatingWhatsappButton {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .whatsappIcon {
+    width: 22px;
+    height: 22px;
+  }
+}

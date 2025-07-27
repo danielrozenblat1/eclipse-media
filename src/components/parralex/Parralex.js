@@ -7,13 +7,17 @@ import eclipse4 from "../../videos/סידי אלמוג אווירה 4.mp4"
 import eclipse5 from "../../videos/סידי אלמוג אווירה 5.mp4"
 import eclipse6 from "../../videos/סידי אלמוג אווירה 6.mp4"
 import eclipse7 from "../../videos/סידי אלמוג אווירה 7.mp4"
-
+import eclipse8 from "../../videos/אקליפס סרטון לאומי.mp4"
 
 
 const SimpleVideoGallery = () => {
   const videoRefs = [useRef(null), useRef(null)];
 
   const videos = [
+        {
+      id: 8,
+      videoSrc: eclipse8
+    },
     {
       id: 1,
       videoSrc: eclipse1

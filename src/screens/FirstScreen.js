@@ -26,9 +26,17 @@ const HeroSection = () => {
     email: '',
     phone: ''
   });
+  
   const carouselRef = useRef(null);
   const scrollInterval = useRef(null);
   const scrollPosition = useRef(0);
+  
+  // משתנים לגרירה ומגע
+  const isInteracting = useRef(false);
+  const startX = useRef(0);
+  const startScrollLeft = useRef(0);
+  const isDragging = useRef(false);
+  const interactionTimeout = useRef(null);
 
   const heroImages = [
     hero2, hero3, hero4, hero1, hero5, hero6, hero7,
@@ -69,10 +77,12 @@ const HeroSection = () => {
   };
 
   const startAutoScroll = () => {
-    const scrollStep = 1.25; // הקטנת מהירות הגלילה פי 2
+    if (isInteracting.current) return;
+    
+    const scrollStep = 1.25;
     
     scrollInterval.current = setInterval(() => {
-      if (carouselRef.current) {
+      if (carouselRef.current && !isInteracting.current) {
         scrollPosition.current += scrollStep;
         carouselRef.current.scrollLeft = scrollPosition.current;
 
@@ -86,12 +96,114 @@ const HeroSection = () => {
           carousel.scrollLeft = scrollPosition.current;
         }
       }
-    }, 16); // 60fps לתנועה חלקה יותר
+    }, 16);
   };
 
   const stopAutoScroll = () => {
     if (scrollInterval.current) {
       clearInterval(scrollInterval.current);
+      scrollInterval.current = null;
+    }
+  };
+
+  const handleInteractionStart = () => {
+    isInteracting.current = true;
+    stopAutoScroll();
+    
+    // ביטול timeout קודם אם קיים
+    if (interactionTimeout.current) {
+      clearTimeout(interactionTimeout.current);
+    }
+  };
+
+  const handleInteractionEnd = () => {
+    // המתנה של 2 שניות לפני חזרה לגלילה אוטומטית
+    interactionTimeout.current = setTimeout(() => {
+      isInteracting.current = false;
+      startAutoScroll();
+    }, 2000);
+  };
+
+  // פונקציות לטיפול במגע (Touch Events)
+  const handleTouchStart = (e) => {
+    handleInteractionStart();
+    startX.current = e.touches[0].clientX;
+    startScrollLeft.current = carouselRef.current.scrollLeft;
+    scrollPosition.current = carouselRef.current.scrollLeft;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!carouselRef.current) return;
+    
+    const x = e.touches[0].clientX;
+    const deltaX = x - startX.current;
+    const newScrollLeft = startScrollLeft.current - deltaX;
+    
+    carouselRef.current.scrollLeft = newScrollLeft;
+    scrollPosition.current = newScrollLeft;
+    
+    // בדיקה לאיפוס אינסופי
+    checkInfiniteScroll();
+  };
+
+  const handleTouchEnd = () => {
+    handleInteractionEnd();
+  };
+
+  // פונקציות לטיפול בגרירת עכבר (Mouse Events)
+  const handleMouseDown = (e) => {
+    handleInteractionStart();
+    isDragging.current = true;
+    startX.current = e.clientX;
+    startScrollLeft.current = carouselRef.current.scrollLeft;
+    scrollPosition.current = carouselRef.current.scrollLeft;
+    
+    // מניעת selection של טקסט בזמן גרירה
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current || !carouselRef.current) return;
+    
+    const x = e.clientX;
+    const deltaX = x - startX.current;
+    const newScrollLeft = startScrollLeft.current - deltaX;
+    
+    carouselRef.current.scrollLeft = newScrollLeft;
+    scrollPosition.current = newScrollLeft;
+    
+    // בדיקה לאיפוס אינסופי
+    checkInfiniteScroll();
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    handleInteractionEnd();
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging.current) {
+      isDragging.current = false;
+      handleInteractionEnd();
+    }
+  };
+
+  // פונקציה לבדיקת איפוס אינסופי
+  const checkInfiniteScroll = () => {
+    if (!carouselRef.current) return;
+    
+    const carousel = carouselRef.current;
+    const singleSetWidth = carousel.scrollWidth / 3;
+    
+    // אם גללנו יותר מדי שמאלה, קפיצה לסוף הסט האמצעי
+    if (scrollPosition.current <= 0) {
+      scrollPosition.current = singleSetWidth * 2 - 1;
+      carousel.scrollLeft = scrollPosition.current;
+    }
+    // אם גללנו יותר מדי ימינה, קפיצה לתחילת הסט האמצעי
+    else if (scrollPosition.current >= singleSetWidth * 2) {
+      scrollPosition.current = singleSetWidth + 1;
+      carousel.scrollLeft = scrollPosition.current;
     }
   };
 
@@ -106,25 +218,22 @@ const HeroSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // כאן תוכל להוסיף את הלוגיקה לשליחת הטופס
     alert('Form submitted successfully!');
     setShowOverlay(false);
     setFormData({ companyName: '', email: '', phone: '' });
   };
 
   useEffect(() => {
-    // התחלת טעינת התמונות
     preloadImages();
   }, []);
 
   useEffect(() => {
-    // הגדרת הקרוסלה רק אחרי שהתמונות נטענו
     if (!imagesLoaded) return;
 
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    // מיקום התחלתי - אמצע הסטים כדי שיהיה מקום לגלול לשני הכיוונים
+    // מיקום התחלתי - אמצע הסטים
     const initialPosition = carousel.scrollWidth / 3;
     carousel.scrollLeft = initialPosition;
     scrollPosition.current = initialPosition;
@@ -132,20 +241,42 @@ const HeroSection = () => {
     // התחלת גלילה אוטומטית
     startAutoScroll();
 
-    // הוספת אירועי עכבר
-    carousel.addEventListener("mouseenter", stopAutoScroll);
-    carousel.addEventListener("mouseleave", startAutoScroll);
+    // הוספת אירועי עכבר לכניסה ויציאה מהקרוסלה
+    const handleMouseEnter = () => {
+      if (!isDragging.current) {
+        handleInteractionStart();
+      }
+    };
+
+    const handleMouseLeaveCarousel = () => {
+      if (!isDragging.current) {
+        handleInteractionEnd();
+      }
+    };
+
+    carousel.addEventListener("mouseenter", handleMouseEnter);
+    carousel.addEventListener("mouseleave", handleMouseLeaveCarousel);
+
+    // הוספת אירועי גרירה גלובליים
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
 
     return () => {
       stopAutoScroll();
-      if (carousel) {
-        carousel.removeEventListener("mouseenter", stopAutoScroll);
-        carousel.removeEventListener("mouseleave", startAutoScroll);
+      if (interactionTimeout.current) {
+        clearTimeout(interactionTimeout.current);
       }
+      
+      if (carousel) {
+        carousel.removeEventListener("mouseenter", handleMouseEnter);
+        carousel.removeEventListener("mouseleave", handleMouseLeaveCarousel);
+      }
+      
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [imagesLoaded]);
 
-  // אם התמונות עדיין לא נטענו, הצג את הLoader
   if (!imagesLoaded) {
     return <Loader />;
   }
@@ -174,7 +305,16 @@ const HeroSection = () => {
           Create a unique fingerprint for your company and make your employees' LinkedIn profiles stand out and memorable among thousands of other companies and professionals.
         </p>
 
-        <div className={styles.carousel} ref={carouselRef}>
+        <div 
+          className={styles.carousel} 
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          style={{ cursor: isDragging.current ? 'grabbing' : 'grab' }}
+        >
           {duplicatedImages.map((img, index) => (
             <div
               key={`hero-${index}`}
@@ -183,8 +323,14 @@ const HeroSection = () => {
               }`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              style={{ userSelect: 'none' }} // מניעת בחירת טקסט
             >
-              <img src={img} alt={`Slide ${index}`} className={styles.heroImage} />
+              <img 
+                src={img} 
+                alt={`Slide ${index}`} 
+                className={styles.heroImage}
+                draggable={false} // מניעת גרירת התמונה
+              />
             </div>
           ))}
         </div>
