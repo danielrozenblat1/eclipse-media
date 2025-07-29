@@ -3,8 +3,8 @@ import styles from './FloatingButton.module.css';
 
 const FloatingWhatsAppButton = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+972532739533';
-    const message = encodeURIComponent('היי Eclipse Media, נשמח לשמוע עוד לגבי..');
+    const phoneNumber = '+972546399302';
+    const message = encodeURIComponent('היי Eclipse Media, נשמח לשמוע עוד לגבי צילומי לינקדין');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };

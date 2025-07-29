@@ -10,7 +10,7 @@ const SixthScreen = () => {
 
     <div className={styles.container}>
 <SeventhScreen/>
-      <div className={styles.title}>Your Questions Our Answers</div>
+      <div className={styles.title}>Q & A</div>
       <FAQItem 
         question="Why do tech companies need professional LinkedIn photography?" 
         answer="In a sea of thousands of LinkedIn profiles, standing out is crucial for tech companies and HR professionals. Professional photography isn't just about getting a good picture - it's about creating a unique visual identity that reflects your company's DNA and brand values. When your team looks professional and cohesive, it builds trust and credibility with potential clients, partners, and top talent you're trying to attract."
