@@ -17,6 +17,8 @@ import hero10 from "../images/אקליפס רקעים מיוחדים 2.png";
 import hero11 from "../images/אקליפס תמונת חדשות 1.png";
 import hero12 from "../images/אקליפס תמונת חדשות 2.png";
 import hero13 from "../images/אקליפס תמונת חדשות 3.png";
+import hero14 from "../images/אקליפס תמונות תדמית רגילות 5.png";
+import hero15 from "../images/אקליפס תמונות תדמית רגילות 7.png";
 import eclipse from "../images/אקליפס לוגו ללא רקע לבן.png";
 
 const HeroSection = () => {
@@ -28,8 +30,8 @@ const HeroSection = () => {
   const scrollPosition = useRef(0);
 
   const heroImages = [
-    hero2,  hero1, hero5, hero6, hero7,
-    hero8, hero9, hero10, hero11, hero12, hero13
+    hero2,  hero1, hero5, hero6, hero15, hero7,
+    hero8, hero9,hero14, hero10, hero11, hero12, hero13, 
   ];
 
   // כל התמונות כולל הלוגו
