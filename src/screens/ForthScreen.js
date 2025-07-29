@@ -6,10 +6,6 @@ import image2 from "../images/אקליפס תמונות מאשאפ 2.png"
 import image3 from "../images/אקליפס תמונות מאשאפ 5.png"
 import image4 from "../images/אקליפס תמונות מאשאפ 6.png"
 import SimpleVideoGallery from '../components/parralex/Parralex';
-// GSAP imports would be here in real project
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// gsap.registerPlugin(ScrollTrigger);
 
 const ScrollFloat = ({
   children,
@@ -75,6 +71,21 @@ const ForthScreen = () => {
     phone: ''
   });
 
+  // State for validation errors
+  const [errors, setErrors] = useState({
+    companyName: '',
+    email: '',
+    phone: ''
+  });
+
+  // State for form submission status
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Server settings
+  const serverUrl = "https://dynamic-server-dfc88e1f1c54.herokuapp.com/leads/newLead";
+  const reciver = "Info@eclipsemedia.co.il";
+
   useEffect(() => {
     const observerOptions = {
       threshold: 0.2,
@@ -102,16 +113,124 @@ const ForthScreen = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // כאן תוכל להוסיף את הלוגיקה לשליחת הטופס
-    alert('Form submitted successfully!');
-    setShowOverlay(false);
-    setFormData({ companyName: '', email: '', phone: '' });
+  // Email validation
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
+
+  // Phone validation (international format) - FIXED VERSION
+  const isValidPhone = (phone) => {
+    // Remove all non-digits except +
+    const cleanPhone = phone.replace(/[^\d+]/g, '');
+    
+    // Just check that we have at least 7 digits and max 15 characters
+    const digitsOnly = cleanPhone.replace(/\+/g, '');
+    return digitsOnly.length >= 7 && digitsOnly.length <= 15;
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    
+    const { companyName, email, phone } = formData;
+    
+    // Validate inputs
+    let valid = true;
+    const newErrors = {};
+
+    // Validate company name
+    if (!companyName.trim()) {
+      newErrors.companyName = 'Please enter company name';
+      valid = false;
+    } else if (companyName.trim().length < 2) {
+      newErrors.companyName = 'Company name must be at least 2 characters';
+      valid = false;
+    }
+
+    // Validate email
+    if (!email.trim()) {
+      newErrors.email = 'Please enter email address';
+      valid = false;
+    } else if (!isValidEmail(email)) {
+      newErrors.email = 'Please enter a valid email address';
+      valid = false;
+    }
+
+    // Validate phone number
+    if (!phone.trim()) {
+      newErrors.phone = 'Please enter phone number';
+      valid = false;
+    } else if (!isValidPhone(phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    
+    if (!valid) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    // Server data object - בדיוק כמו אצל קרן
+    const serverData = {
+      name: companyName,
+      phone: phone,
+      email: email,
+      reciver: reciver
+    };
+
+    try {
+      // Send to server
+      const serverResponse = await fetch(serverUrl, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(serverData)
+      });
+
+      if (serverResponse.ok) {
+        // רק אם השליחה הצליחה באמת
+        setIsSubmitting(false);
+        setSubmitted(true);
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            companyName: '',
+            email: '',
+            phone: ''
+          });
+          setSubmitted(false);
+          setShowOverlay(false);
+        }, 3000);
+      } else {
+        // אם יש שגיאה מהשרת
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      // במקרה של שגיאה - לא מראים "נשלח בהצלחה"
+      alert("An error occurred, please try again later");
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      // לא מעדכנים את submitted ל-true!
+    }
+  };
+
+  const isFormValid = 
+    formData.companyName.trim() !== '' && 
+    isValidEmail(formData.email) && 
+    isValidPhone(formData.phone);
 
   const workflowSteps = [
     {
@@ -187,27 +306,21 @@ const ForthScreen = () => {
       ))}
 
       {/* Video Gallery Section */}
-     
-         <div className={styles.header}>
-          <ScrollFloat
+      <div className={styles.header}>
+        <ScrollFloat
           containerClassName={styles.headerTitle}
           animationDuration={1.2}
           stagger={0.05}
         >
-        And It Goes Like This..
+          And It Goes Like This..
         </ScrollFloat>
         <SimpleVideoGallery/>
       </div>
-   
 
       {/* CTA Section */}
       <div className={styles.ctaSection}>
-        <h1
-         className={styles.ctaTitle}
-          animationDuration={1.2}
-          stagger={0.05}
-        >
-          Ready to Make Your Brand Uniqe?
+        <h1 className={styles.ctaTitle}>
+          Ready to Make Your Brand Unique?
         </h1>
         <p className={styles.ctaDescription}>
           Let's create a unique visual identity that sets your company apart and makes your team shine on LinkedIn.
@@ -220,13 +333,14 @@ const ForthScreen = () => {
         </button>
       </div>
 
-      {/* Overlay עם טופס - נרנדר מחוץ לקומפוננטה */}
+      {/* Overlay with form */}
       {showOverlay && createPortal(
         <div className={styles.overlay} onClick={() => setShowOverlay(false)}>
           <div className={styles.formContainer} onClick={(e) => e.stopPropagation()} style={{ direction: 'ltr' }}>
             <button 
               className={styles.closeButton}
               onClick={() => setShowOverlay(false)}
+              disabled={isSubmitting}
             >
               ✕
             </button>
@@ -242,10 +356,12 @@ const ForthScreen = () => {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleInputChange}
-                  className={styles.input}
+                  className={`${styles.input} ${errors.companyName ? styles.inputError : ''}`}
                   required
                   placeholder="Enter your company name"
+                  disabled={isSubmitting || submitted}
                 />
+                {errors.companyName && <span className={styles.errorText}>{errors.companyName}</span>}
               </div>
 
               <div className={styles.inputGroup}>
@@ -255,10 +371,12 @@ const ForthScreen = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={styles.input}
+                  className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                   required
                   placeholder="example@company.com"
+                  disabled={isSubmitting || submitted}
                 />
+                {errors.email && <span className={styles.errorText}>{errors.email}</span>}
               </div>
 
               <div className={styles.inputGroup}>
@@ -268,14 +386,24 @@ const ForthScreen = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className={styles.input}
+                  className={`${styles.input} ${errors.phone ? styles.inputError : ''}`}
                   required
                   placeholder="+1-234-567-8900"
+                  disabled={isSubmitting || submitted}
                 />
+                {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
               </div>
 
-              <button type="submit" className={styles.submitButton}>
-                Send Message
+              <button 
+                type="submit" 
+                className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''} ${submitted ? styles.submitted : ''}`}
+                disabled={!isFormValid || isSubmitting || submitted}
+                style={{ 
+                  opacity: (!isFormValid || isSubmitting || submitted) ? 0.6 : 1,
+                  cursor: (!isFormValid || isSubmitting || submitted) ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {isSubmitting ? 'Sending...' : submitted ? 'Sent Successfully!' : 'Send Message'}
               </button>
             </form>
           </div>
