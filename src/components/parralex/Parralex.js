@@ -22,14 +22,7 @@ const SimpleVideoGallery = () => {
       id: 9,
       videoSrc: eclipse9
     },
-    {
-      id: 1,
-      videoSrc: eclipse1
-    },
-    {
-      id: 2,
-      videoSrc: eclipse2
-    },
+   
        {
       id: 3,
       videoSrc: eclipse3
@@ -38,10 +31,7 @@ const SimpleVideoGallery = () => {
       id: 4,
       videoSrc: eclipse4
     },
-       {
-      id: 5,
-      videoSrc: eclipse5
-    },
+      
        {
       id: 6,
       videoSrc: eclipse6

@@ -30,8 +30,7 @@ const SeventhScreen = () => {
       <div className={styles.title}>Some Of Our Previous Projects</div>
       <Faces/>
       
-      <div className={styles.title}>Trusted By</div>
-      <Works/>
+ 
     </div>
   );
 };

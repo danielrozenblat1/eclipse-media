@@ -54,26 +54,34 @@
   font-size: 1.25rem;
   line-height: 1.7;
   max-width: 800px;
-
   font-family: "HeeboR", "Heebo", sans-serif;
   margin: 0 auto 3rem auto;
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* כפתור CTA */
+/* Container for buttons */
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+/* כפתור CTA ראשי */
 .ctaButton {
   background-color: #000000;
   color: white;
   border: 1px solid #18BFC5;
-  padding: 1rem 2.5rem;
+  padding: 1rem 2rem;
   font-size: 1.125rem;
-  width: 400px;
+  width: 280px;
   font-weight: 500;
   font-family: "HeeboR", "Heebo", sans-serif;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 3rem;
   outline: none;
   position: relative;
   overflow: hidden;
@@ -86,6 +94,62 @@
 }
 
 .ctaButton:active {
+  transform: translateY(0);
+}
+
+/* כפתור CTA משני - עדכון עיצוב */
+.secondaryButton {
+  background-color: #18BFC5;
+  color: white;
+  border: 1px solid #000000;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  width: 280px;
+  font-weight: 500;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(24, 191, 197, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(24, 191, 197, 0.3);
+}
+
+.secondaryButton:active {
+  transform: translateY(0);
+}
+
+/* כפתור CTA משני ישן - שמירה לתאימות לאחור */
+.ctaButtonSecondary {
+  background-color: #18BFC5;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  width: 280px;
+  font-weight: 500;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButtonSecondary:hover {
+  background-color: rgba(24, 191, 197, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(24, 191, 197, 0.3);
+}
+
+.ctaButtonSecondary:active {
   transform: translateY(0);
 }
 
@@ -296,6 +360,17 @@
   box-shadow: 0 0 0 3px rgba(24, 191, 197, 0.2);
 }
 
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.errorText {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  font-family: "HeeboR", "Heebo", sans-serif;
+  text-align: left;
+}
+
 /* כפתור שליחה */
 .submitButton {
   background: linear-gradient(135deg, #18BFC5, #16a8ad);
@@ -321,6 +396,16 @@
 
 .submitButton:active {
   transform: translateY(0);
+}
+
+.submitButton.submitting {
+  background: linear-gradient(135deg, #16a8ad, #148a8f);
+  cursor: not-allowed;
+}
+
+.submitButton.submitted {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  cursor: not-allowed;
 }
 
 /* כותרת Trusted by */
@@ -421,11 +506,18 @@
     max-width: 280px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 0.95rem;
     padding: 0.75rem 1.75rem;
     width: 280px;
-    margin-bottom: 1.5rem;
   }
 
   .carouselSlide {
@@ -490,11 +582,18 @@
     max-width: 320px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1rem;
     padding: 0.875rem 2rem;
     width: 320px;
-    margin-bottom: 2rem;
   }
 
   .carouselSlide {
@@ -549,11 +648,18 @@
     max-width: 400px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1rem;
     padding: 0.875rem 2rem;
     width: 350px;
-    margin-bottom: 2.5rem;
   }
 
   .carouselSlide {
@@ -608,7 +714,14 @@
     max-width: 480px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1rem;
     padding: 0.875rem 2rem;
     width: 380px;
@@ -663,7 +776,14 @@
     max-width: 550px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1rem;
     padding: 0.875rem 2rem;
     width: 400px;
@@ -719,7 +839,14 @@
     max-width: 600px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1rem;
     padding: 0.875rem 2rem;
     width: 400px;
@@ -775,7 +902,14 @@
     max-width: 650px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1.125rem;
     padding: 1rem 2.5rem;
     width: 400px;
@@ -835,7 +969,14 @@
     max-width: 700px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1.15rem;
     padding: 1rem 2.5rem;
     width: 400px;
@@ -894,7 +1035,13 @@
     max-width: 750px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1.18rem;
     padding: 1rem 2.5rem;
     width: 400px;
@@ -953,7 +1100,13 @@
     max-width: 780px;
   }
 
-  .ctaButton {
+  .buttonsContainer {
+    gap: 1rem;
+  }
+
+  .ctaButton,
+  .secondaryButton,
+  .ctaButtonSecondary {
     font-size: 1.2rem;
     padding: 1rem 2.5rem;
     width: 400px;
@@ -988,9 +1141,4 @@
     padding: 1rem 2rem;
     font-size: 1.2rem;
   }
-}
-
-/* מעל 1250px - הגדרות ברירת מחדל */
-@media (min-width: 1250px) {
-  /* הגדרות ברירת המחדל נשארות כפי שהן */
 }
